@@ -1,0 +1,87 @@
+:root {
+    --primary-color: #96CEB4;
+    --secondary-color: #FFEEAD;
+    --tertiary-color: #D9534F;
+    --quaternary-color: #FFAD60;
+}
+
+html, body {
+    background-color: var(--secondary-color);
+}
+
+.card {
+    background-color: var(--primary-color);
+    margin: 20px;
+}
+
+.card-title {
+    color: var(--quaternary-color);
+    font-size: 32px;
+}
+
+img {
+    filter: grayscale(50%);
+}
+
+img:hover {
+    filter: none;
+}
+
+header{
+    background-color: var(--primary-color);
+}
+
+h1 {
+    text-align: center;
+    font-size: 84px;
+}
+
+h1, .card-title {
+    font-family: 'Kaushan Script', cursive;
+    text-shadow: 0 0 10px black;
+}
+
+header a {
+    color: var(--tertiary-color);
+}
+
+a:hover {
+    color: var(--quaternary-color);
+    text-decoration: none;
+}
+
+#signup, #login, p {
+    font-family: 'Amatic SC', cursive;
+}
+
+p {
+    font-size: 32px;
+    text-align: center;
+}
+
+#signup, #login {
+    display:inline-block;
+    font-size: 36px;
+}
+
+#signup {
+    margin-top: 2px;
+    margin-left: 4px;
+}
+
+#login {
+    float: right;
+    margin-top: 2px;
+    margin-right: 4px;
+}
+
+/*signup page*/
+label {
+    font-family: 'Amatic SC', cursive;
+    font-size: 35px;
+    margin-left: 20px;
+}
+
+button {
+    margin-left: 20px;
+}
