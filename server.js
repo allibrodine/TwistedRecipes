@@ -7,6 +7,23 @@ const helpers = require('./utils/helpers');
 const app = express();
 const PORT = process.env.PORT || 3002;
 
+//require session dependencies
+const session = require('express-session');
+const SequelizeStore = require('connect-session-sequelize')(session.Store);
+
+//session cookies
+const sess = {
+    secret: 'Super super secret',
+    cookie: {},
+    resave: false,
+    saveUninitialized: true,
+    store: new SequelizeStore({
+        db: sequelize
+    })
+};
+
+app.use(session(sess));
+
 const hbs = exphbs.create({ helpers });
 
 //handlebars

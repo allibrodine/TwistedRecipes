@@ -18,11 +18,13 @@
         </div>
 
         <div id="login">
-            {{#if loggedIn}}
-            <a href="/logout">Log Out</a>
-            {{else}}
+            {{!-- {{#if loggedIn}} --}}
+            <div id="logout">
+                <a href="/logout">Log Out</a>
+            </div>
+            {{!-- {{else}} --}}
             <a href="/login">Log In</a>
-            {{/if}}
+            {{!-- {{/if}} --}}
         </div>
         
         <h1>
@@ -35,9 +37,9 @@
         {{{ body }}}
     </main>
 
-    {{#if loggedIn}}
+    {{!-- {{#if loggedIn}} --}}
     <script src="/javascript/logout.js"></script>
-    {{/if}}
+    {{!-- {{/if}} --}}
 
 </body>
 

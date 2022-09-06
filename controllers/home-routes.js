@@ -9,11 +9,21 @@ router.get('/', (req, res) => {
 
 //route to login page
 router.get('/login', (req, res) => {
+    if (req.session.loggedIn) {
+        res.redirect('/');
+        return;
+    }
+
     res.render('login');
 });
 
 //route to signup page
 router.get('/signup', (req, res) => {
+    // if (req.session.loggedIn) {
+    //     res.redirect('/');
+    //     return;
+    // }
+    
     res.render('signup');
 });
 
