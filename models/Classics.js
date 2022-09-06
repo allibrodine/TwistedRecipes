@@ -1,9 +1,10 @@
 const { Model, DataTypes } = require('sequelize');
+
 const sequelize = require('../config/connection');
 
-class Comment extends Model {}
+class Classics extends Model {}
 
-Comment.init(
+Classics.init(
     {
         id: {
             type: DataTypes.INTEGER,
@@ -11,25 +12,22 @@ Comment.init(
             primaryKey: true,
             autoIncrement: true
         },
-        comment_text: {
+        recipe_name: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
+        ingredients: {
             type: DataTypes.STRING,
             allowNull: false,
             validate: {
                 len: [1]
             }
         },
-        user_id: {
-            type: DataTypes.INTEGER,
-            references: {
-                model: 'user',
-                key: 'id'
-            }
-        },
-        recipe_id: {
-            type: DataTypes.INTEGER,
-            references: {
-                model: 'recipe',
-                key: 'id'
+        method: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            validate: {
+                len: [1]
             }
         }
     },
@@ -37,8 +35,8 @@ Comment.init(
         sequelize,
         freezeTableName: true,
         underscored: true,
-        modelName: 'comments'
+        modelName: 'classics'
     }
 );
 
-module.exports = Comment;
+module.exports = Classics;
