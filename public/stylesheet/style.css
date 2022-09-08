@@ -64,7 +64,11 @@ p {
     font-size: 36px;
 }
 
-#signup, #my-recipes {
+#my-recipes {
+    margin-left: 43%;
+ }
+
+#signup {
     margin-top: 2px;
     margin-left: 4px;
 }
@@ -108,3 +112,15 @@ textarea {
     margin-top: 20px;
 }
 
+/*single recipe page*/
+.card-body p {
+    text-align: left;
+}
+
+.card-body a {
+    color: var(--tertiary-color);
+}
+
+.card-body a:hover {
+    color: var(--quaternary-color);
+}
