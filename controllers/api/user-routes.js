@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { User, Recipe, Comment, Vote } = require('../../models');
+const { User, Recipe, Comment } = require('../../models');
 
 // get all users
 router.get('/', (req, res) => {
@@ -24,25 +24,15 @@ router.get('/:id', (req, res) => {
       {
         model: Recipe,
         attributes: ['id', 'recipe_name', 'ingredients', 'method', 'created_at'],
-        include: {
-          model: Comment,
-          attributes: ['id', 'comment_text', 'created_at'],
-          include: {
-            model: User,
-            attributes: ['username']
-          }
-        }
         // include: {
-        //   model: Post,
-        //   attributes: ['title']
+        //   model: Comment,
+        //   attributes: ['id', 'comment_text', 'created_at'],
+        //   include: {
+        //     model: User,
+        //     attributes: ['username']
+        //   }
         // }
-      },
-      // {
-      //   model: Post,
-      //   attributes: ['title'],
-      //   through: Vote,
-      //   as: 'voted_posts'
-      // }
+      }
     ]
   })
     .then(dbUserData => {
@@ -68,12 +58,12 @@ router.post('/', (req, res) => {
   .then(dbUserData => {
       //save user info
       req.session.save(() => {
-          req.session.user_id = dbUserData.id;
-          req.session.username = dbUserData.username;
-          req.session.loggedIn = true;
+        req.session.user_id = dbUserData.id;
+        req.session.username = dbUserData.username;
+        req.session.loggedIn = true;
 
-          res.json(dbUserData);
-      })
+        res.json(dbUserData);
+    })
   })
     .catch(err => {
       console.log(err);
@@ -100,13 +90,14 @@ router.post('/login', (req, res) => {
       return;
     }
 
-      req.session.save(() => {
-        req.session.user_id = dbUserData.id;
-        req.session.username = dbUserData.username;
-        req.session.loggedIn = true;
-        
-      res.json({ user: dbUserData, message: 'You are now logged in!' });
-      });
+    req.session.save(() => {
+      req.session.user_id = dbUserData.id;
+      req.session.username = dbUserData.username;
+      req.session.loggedIn = true;
+      
+    res.json({ user: dbUserData, message: 'You are now logged in!' });
+
+    });
   });
 });
 
@@ -123,7 +114,6 @@ router.post('/logout', (req, res) => {
 
 //update user
 router.put('/:id', (req, res) => {
-  // pass in req.body instead to only update what's passed through
   User.update(req.body, {
     individualHooks: true,
     where: {

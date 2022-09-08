@@ -13,19 +13,21 @@
 <body>
     <header>
 
+        {{#if loggedIn}}
+        <div id="my-recipes">
+            <a href="/recipes">My Recipes</a>
+        </div>
+        <div id="logout">
+            <a href="/logout">Log Out</a>
+        </div>
+        {{else}}
+        <div id="login">
+            <a href="/login">Log In</a>
+        </div>
         <div id="signup">
             <a href="/signup">Sign Up</a>
         </div>
-
-        <div id="login">
-            {{!-- {{#if loggedIn}} --}}
-            <div id="logout">
-                <a href="/logout">Log Out</a>
-            </div>
-            {{!-- {{else}} --}}
-            <a href="/login">Log In</a>
-            {{!-- {{/if}} --}}
-        </div>
+        {{/if}}
         
         <h1>
             <a href="/">Twisted Recipes</a>
@@ -37,9 +39,9 @@
         {{{ body }}}
     </main>
 
-    {{!-- {{#if loggedIn}} --}}
+    {{#if loggedIn}}
     <script src="/javascript/logout.js"></script>
-    {{!-- {{/if}} --}}
+    {{/if}}
 
 </body>
 

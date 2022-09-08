@@ -6,7 +6,7 @@ const recipeRoutes = require('./recipe-routes');
 
 router.use('/api/', apiRoutes);
 router.use('/', homeRoutes);
-router.use('/recipe-routes', recipeRoutes);
+router.use('/recipes', recipeRoutes);
 
 router.use((req, res) => {
     res.status(404).end();

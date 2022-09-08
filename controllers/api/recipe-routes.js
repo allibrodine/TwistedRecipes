@@ -1,34 +1,23 @@
 const router = require('express').Router();
 const sequelize = require('../../config/connection');
-const { Recipe, User, Comment, Vote } = require('../../models');
+const { Recipe, User, Comment } = require('../../models');
 
 // get all recipes
 router.get('/', (req, res) => {
-  console.log('======================');
   Recipe.findAll({
     attributes: [
       'id',
       'recipe_name',
       'ingredients',
       'method',
-      'created_at',
-      // [sequelize.literal('(SELECT COUNT(*) FROM vote WHERE post.id = vote.post_id)'), 'vote_count']
+      'created_at'
     ],
     order: [['created_at', 'DESC']],
-    include: [
-      {
-        model: Comment,
-        attributes: ['id', 'comment_text', 'created_at'],
-        // include: {
-        //   model: User,
-        //   attributes: ['username']
-        // }
-      },
+    include: 
       {
         model: User,
         attributes: ['username']
       }
-    ]
   })
     .then(dbReceipeData => res.json(dbReceipeData))
     .catch(err => {
@@ -49,22 +38,21 @@ router.get('/:id', (req, res) => {
       'ingredients',
       'method',
       'created_at',
-      // [sequelize.literal('(SELECT COUNT(*) FROM vote WHERE post.id = vote.post_id)'), 'vote_count']
     ],
-    include: [
-      {
-        model: Comment,
-        attributes: ['id', 'comment_text', 'created_at'],
-        include: {
-          model: User,
-          attributes: ['username']
-        }
-      },
-      {
-        model: User,
-        attributes: ['username']
-      }
-    ]
+    // include: [
+    //   {
+    //     model: Comment,
+    //     attributes: ['id', 'comment_text', 'created_at'],
+    //     include: {
+    //       model: User,
+    //       attributes: ['username']
+    //     }
+    //   },
+    //   {
+    //     model: User,
+    //     attributes: ['username']
+    //   }
+    // ]
   })
     .then(dbRecipeData => {
       if (!dbRecipeData) {
@@ -84,7 +72,8 @@ router.post('/', (req, res) => {
   Recipe.create({
     recipe_name: req.body.recipe_name,
     ingredients: req.body.ingredients,
-    method: req.body.method
+    method: req.body.method,
+    user_id: req.session.user_id
   })
     .then(dbRecipeData => res.json(dbRecipeData))
     .catch(err => {
@@ -92,16 +81,6 @@ router.post('/', (req, res) => {
       res.status(500).json(err);
     });
 });
-
-// router.put('/upvote', (req, res) => {
-//   // custom static method created in models/Post.js
-//   Post.upvote(req.body, { Vote, Comment, User })
-//     .then(updatedVoteData => res.json(updatedVoteData))
-//     .catch(err => {
-//       console.log(err);
-//       res.status(500).json(err);
-//     });
-// });
 
 // update recipe
 router.put('/:id', (req, res) => {

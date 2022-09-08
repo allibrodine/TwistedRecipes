@@ -18,20 +18,20 @@ Comment.init(
                 len: [1]
             }
         },
-        user_id: {
-            type: DataTypes.INTEGER,
-            references: {
-                model: 'user',
-                key: 'id'
-            }
-        },
-        recipe_id: {
-            type: DataTypes.INTEGER,
-            references: {
-                model: 'recipe',
-                key: 'id'
-            }
-        }
+        // user_id: {
+        //     type: DataTypes.INTEGER,
+        //     references: {
+        //         model: 'user',
+        //         key: 'id'
+        //     }
+        // },
+        // recipe_id: {
+        //     type: DataTypes.INTEGER,
+        //     references: {
+        //         model: 'recipe',
+        //         key: 'id'
+        //     }
+        // }
     },
     {
         sequelize,

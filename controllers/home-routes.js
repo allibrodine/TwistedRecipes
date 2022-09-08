@@ -1,6 +1,6 @@
-const { Classics } = require('../models');
-
+const { Recipe, User, Comment } = require('../models');
 const router = require('express').Router();
+const sequelize = require('../config/connection');
 
 //render homepage
 router.get('/', (req, res) => {
@@ -9,21 +9,11 @@ router.get('/', (req, res) => {
 
 //route to login page
 router.get('/login', (req, res) => {
-    if (req.session.loggedIn) {
-        res.redirect('/');
-        return;
-    }
-
     res.render('login');
 });
 
 //route to signup page
-router.get('/signup', (req, res) => {
-    // if (req.session.loggedIn) {
-    //     res.redirect('/');
-    //     return;
-    // }
-    
+router.get('/signup', (req, res) => {  
     res.render('signup');
 });
 

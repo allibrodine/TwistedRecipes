@@ -1,0 +1,44 @@
+<section id="new-recipe">
+    <h3>Add Your Twisted Recipe</h3>
+
+    <form class="new-recipe-form">
+        <div>
+            <input type="text" id="recipe_name" name="recipe_name" placeholder="Recipe Title">
+        </div>
+        <div>
+            <textarea name="ingredients" id="ingredients" placeholder="Ingredients"></textarea>
+        </div>
+        <div>
+            <textarea name="method" id="method" placeholder="Instructions"></textarea>
+        </div>
+        <button type="submit" id="recipe-btn">Post Recipe</button>
+    </form>
+    
+</section>
+
+
+
+{{!-- {{#if recipes.length}} --}}
+<section class="recipe-list">
+    <h3>Your Recipes</h3>
+        <ul>
+            {{#each recipes}}
+                <li>
+                    <article class="recipe-details">
+                        <div class="recipe-info">
+                            <h5>{{recipe_name}}</h5>
+                            <span>{{ingredients}}</span>
+                            <br>
+                            <span>{{method}}</span>
+                        </div>
+                        <div class="meta">
+                            Posted by {{user.username}} on {{format_date created_at}}
+                        </div>
+                    </article>
+                </li>
+            {{/each}}
+        </ul>
+</section>
+{{!-- {{/if}} --}}
+
+<script src="/javascript/add-recipe.js"></script>
