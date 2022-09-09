@@ -25,6 +25,7 @@ As a home chef I want to get ideas for new recipes to try at home so that the fo
 5. Users discover new ideas
 
 ## Usage
+![Twisted Recipes](/public/images/twisted-recipes-screenshot.png)
 
 ## Credits
 SMU Coding Bootcamp group project with:
