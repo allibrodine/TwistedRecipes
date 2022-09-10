@@ -4,13 +4,17 @@ const sequelize = require('../config/connection');
 
 //render homepage
 router.get('/', (req, res) => {
+    if (req.session.loggedIn) {
+        res.render('homepage', {loggedIn: true});
+        return;
+    }
     res.render('homepage');
 });
 
 //route to login page
 router.get('/login', (req, res) => {
     if (req.session.loggedIn) {
-        res.redirect('/');
+        res.redirect('/recipes');
         return;
     }
     res.render('login');
